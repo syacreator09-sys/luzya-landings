@@ -110,6 +110,18 @@
   .next-title { font-weight: 700; margin-bottom: 6px; }
   .next-impact { font-size: 0.78rem; color: var(--purple-glow); }
 
+  /* HUB SECTIONS — Pipeline, Task, Calendar, Team, Office, Cost */
+  .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .hub-card { background: var(--dark2); border: 1px solid rgba(107,33,168,0.2); border-radius: 14px; padding: 22px 24px; position: relative; overflow: hidden; }
+  .hub-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--purple), var(--purple-glow)); }
+  .hub-icon { font-size: 2rem; margin-bottom: 10px; }
+  .hub-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 6px; color: var(--white); }
+  .hub-stat { font-size: 1.8rem; font-weight: 900; color: var(--purple-glow); margin-bottom: 8px; }
+  .hub-desc { font-size: 0.8rem; color: var(--gray); line-height: 1.6; }
+  .hub-tag { display: inline-block; background: rgba(107,33,168,0.25); border: 1px solid rgba(168,85,247,0.3); color: var(--purple-glow); border-radius: 6px; padding: 2px 8px; font-size: 0.68rem; margin: 2px 2px 0 0; }
+  .hub-tag.green { background: rgba(34,197,94,0.15); border-color: rgba(34,197,94,0.3); color: var(--green); }
+  .hub-tag.yellow { background: rgba(234,179,8,0.15); border-color: rgba(234,179,8,0.3); color: var(--yellow); }
+
   /* FOOTER */
   footer {
     text-align: center; padding: 60px 20px;
@@ -132,7 +144,29 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="badge">v5.2 — 2026-03-03</div>
+  <!-- LUZYA LOGO SVG -->
+  <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:20px;filter:drop-shadow(0 0 20px rgba(168,85,247,0.6))">
+    <circle cx="40" cy="40" r="38" stroke="url(#g1)" stroke-width="2" fill="rgba(107,33,168,0.15)"/>
+    <circle cx="40" cy="40" r="28" stroke="url(#g1)" stroke-width="1" stroke-dasharray="4 3" fill="none" opacity="0.4"/>
+    <circle cx="40" cy="40" r="10" fill="url(#g1)"/>
+    <!-- Orbiting dots -->
+    <circle cx="40" cy="12" r="4" fill="#A855F7"/>
+    <circle cx="68" cy="40" r="3" fill="#EC4899"/>
+    <circle cx="40" cy="68" r="4" fill="#A855F7"/>
+    <circle cx="12" cy="40" r="3" fill="#EC4899"/>
+    <!-- Lines -->
+    <line x1="40" y1="16" x2="40" y2="30" stroke="#A855F7" stroke-width="1.5" opacity="0.6"/>
+    <line x1="64" y1="40" x2="50" y2="40" stroke="#EC4899" stroke-width="1.5" opacity="0.6"/>
+    <line x1="40" y1="64" x2="40" y2="50" stroke="#A855F7" stroke-width="1.5" opacity="0.6"/>
+    <line x1="16" y1="40" x2="30" y2="40" stroke="#EC4899" stroke-width="1.5" opacity="0.6"/>
+    <defs>
+      <linearGradient id="g1" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#6B21A8"/>
+        <stop offset="100%" stop-color="#EC4899"/>
+      </linearGradient>
+    </defs>
+  </svg>
+  <div class="badge">LUZYA TECH · v5.2 · 2026-03-03</div>
   <h1>O.R.I.O.N. <span>JARVIS</span></h1>
   <p>Asistente IA autónomo de Alfonso Romero — Cano Digital / LUZYA Tech.<br>Ejecuta. No describe. Nunca offline.</p>
   <div class="hero-stats">
@@ -372,6 +406,189 @@
     <div class="skill-card"><div class="skill-emoji">⬆️</div><div class="skill-name">Escalar Claude</div><div class="skill-desc">Auto-escala a Claude Code</div><div class="skill-free">GRATIS</div></div>
     <div class="skill-card"><div class="skill-emoji">🔊</div><div class="skill-name">Audio Send</div><div class="skill-desc">Enviar audios por Telegram</div><div class="skill-free">GRATIS</div></div>
     <div class="skill-card"><div class="skill-emoji">🖥️</div><div class="skill-name">SMTP Send</div><div class="skill-desc">Email directo</div><div class="skill-free">GRATIS</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ORQUESTACIÓN — Cómo ORION ejecuta una tarea -->
+<section>
+  <div class="section-title">⚡ Cómo <span>Orquesta</span> ORION</div>
+  <div class="section-sub">De un mensaje de Alfonso → resultado entregado. Sin preguntas innecesarias.</div>
+
+  <div style="display:flex;flex-direction:column;gap:0;max-width:800px;margin:0 auto;">
+
+    <!-- Paso 1 -->
+    <div style="display:flex;align-items:flex-start;gap:20px;padding:20px 0;">
+      <div style="min-width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#6B21A8,#A855F7);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;flex-shrink:0;">1</div>
+      <div>
+        <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">📩 Alfonso escribe en Telegram</div>
+        <div style="background:rgba(107,33,168,0.15);border:1px solid rgba(168,85,247,0.3);border-radius:10px;padding:10px 14px;font-size:0.85rem;color:#A855F7;font-style:italic;">"hazme un Excel con los leads de restaurantes CDMX y mándamelo"</div>
+      </div>
+    </div>
+    <div style="margin-left:24px;width:2px;height:24px;background:linear-gradient(180deg,#6B21A8,transparent);"></div>
+
+    <!-- Paso 2 -->
+    <div style="display:flex;align-items:flex-start;gap:20px;padding:20px 0;">
+      <div style="min-width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#6B21A8,#A855F7);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;flex-shrink:0;">2</div>
+      <div>
+        <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">🧠 ORION identifica intención y agente</div>
+        <div style="font-size:0.82rem;color:#A0A0B0;">sya-outreach detecta: B2B leads → sya-builder ejecuta create-excel → busca en base CDMX 26,653 empresas → filtra restaurantes</div>
+      </div>
+    </div>
+    <div style="margin-left:24px;width:2px;height:24px;background:linear-gradient(180deg,#6B21A8,transparent);"></div>
+
+    <!-- Paso 3 -->
+    <div style="display:flex;align-items:flex-start;gap:20px;padding:20px 0;">
+      <div style="min-width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#6B21A8,#A855F7);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;flex-shrink:0;">3</div>
+      <div>
+        <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">⚙️ Encadena skills automáticamente</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
+          <span style="background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);color:#22C55E;padding:3px 10px;border-radius:20px;font-size:0.75rem;">📊 create-excel</span>
+          <span style="color:#A0A0B0;font-size:0.9rem;align-self:center;">→</span>
+          <span style="background:rgba(107,33,168,0.2);border:1px solid rgba(168,85,247,0.3);color:#A855F7;padding:3px 10px;border-radius:20px;font-size:0.75rem;">☁️ cloudinary-upload</span>
+          <span style="color:#A0A0B0;font-size:0.9rem;align-self:center;">→</span>
+          <span style="background:rgba(107,33,168,0.2);border:1px solid rgba(168,85,247,0.3);color:#A855F7;padding:3px 10px;border-radius:20px;font-size:0.75rem;">📨 telegram-send</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-left:24px;width:2px;height:24px;background:linear-gradient(180deg,#6B21A8,transparent);"></div>
+
+    <!-- Paso 4 -->
+    <div style="display:flex;align-items:flex-start;gap:20px;padding:20px 0;">
+      <div style="min-width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#22C55E,#16A34A);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">✅</div>
+      <div>
+        <div style="font-weight:700;font-size:1rem;margin-bottom:4px;color:#22C55E;">Entrega resultado + modelo usado</div>
+        <div style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:10px;padding:10px 14px;font-size:0.82rem;color:#22C55E;">"✅ Excel generado: 847 restaurantes CDMX con email. Modelo: GPT-5-mini OAuth — GRATIS. <a href='#' style='color:#A855F7'>Descargar aquí</a>"</div>
+        <div style="font-size:0.75rem;color:#A0A0B0;margin-top:6px;">Tiempo estimado: 15-45 segundos · Sin preguntas · Sin pasos manuales</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Ejemplos de orquestación -->
+  <div style="margin-top:48px;">
+    <div style="font-size:0.9rem;font-weight:700;color:#A0A0B0;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Ejemplos reales de orquestación</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+      <div style="background:var(--dark2);border:1px solid rgba(107,33,168,0.2);border-radius:10px;padding:14px 16px;">
+        <div style="font-size:0.8rem;color:#A855F7;margin-bottom:4px;">📱 "hazme un reel de CASS"</div>
+        <div style="font-size:0.72rem;color:#A0A0B0;">Nano Banana Pro (imagen) → video-editor → subtitle-gen → cloudinary → Telegram</div>
+      </div>
+      <div style="background:var(--dark2);border:1px solid rgba(107,33,168,0.2);border-radius:10px;padding:14px 16px;">
+        <div style="font-size:0.8rem;color:#A855F7;margin-bottom:4px;">📄 "genera cotización para cliente X"</div>
+        <div style="font-size:0.72rem;color:#A0A0B0;">sya-quotes → create-pdf (logo + precios) → cloudinary → email-send</div>
+      </div>
+      <div style="background:var(--dark2);border:1px solid rgba(107,33,168,0.2);border-radius:10px;padding:14px 16px;">
+        <div style="font-size:0.8rem;color:#A855F7;margin-bottom:4px;">🔍 "investiga competencia de X"</div>
+        <div style="font-size:0.72rem;color:#A0A0B0;">perplexity → web-scraper (Apify) → create-docx (reporte) → Telegram</div>
+      </div>
+      <div style="background:var(--dark2);border:1px solid rgba(107,33,168,0.2);border-radius:10px;padding:14px 16px;">
+        <div style="font-size:0.8rem;color:#A855F7;margin-bottom:4px;">💰 "escanea esta factura"</div>
+        <div style="font-size:0.72rem;color:#A0A0B0;">finance-ocr (Gemini) → CSV → resumen automático → Telegram</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HUB ORION — Pipeline / Task / Calendar / Team / Office / Cost -->
+<section>
+  <div class="section-title">🏢 ORION <span>Hub</span></div>
+  <div class="section-sub">Todo lo que gestiona ORION — Pipeline, Tareas, Calendario, Equipo, Oficina y Costos</div>
+  <div class="hub-grid">
+
+    <!-- PIPELINE -->
+    <div class="hub-card">
+      <div class="hub-icon">🚀</div>
+      <div class="hub-title">Pipeline B2B</div>
+      <div class="hub-stat">26,653</div>
+      <div class="hub-desc">Empresas B2B en base CDMX · 6,472 con email · 18,130 pendientes Anymail</div>
+      <div style="margin-top:10px">
+        <span class="hub-tag green">✅ Validados: 97</span>
+        <span class="hub-tag">Prospectos: 6,472</span>
+        <span class="hub-tag yellow">⚡ BANT Score activo</span>
+      </div>
+      <div style="margin-top:10px;font-size:0.75rem;color:var(--gray)">Sectores: Restaurantes · Clínicas · Autos · Despachos · Retail</div>
+    </div>
+
+    <!-- TASK -->
+    <div class="hub-card">
+      <div class="hub-icon">✅</div>
+      <div class="hub-title">Task Manager</div>
+      <div class="hub-stat">PLAN_MASTER</div>
+      <div class="hub-desc">ORION gestiona tareas vía PLAN_MASTER_LOG.md · Crons automáticos diarios</div>
+      <div style="margin-top:10px">
+        <span class="hub-tag green">Session-cleanup: 4am</span>
+        <span class="hub-tag green">Health-check: 8am</span>
+        <span class="hub-tag green">Config-backup: 3am</span>
+        <span class="hub-tag green">Memory-reindex: 11pm</span>
+        <span class="hub-tag yellow">Anti-olvido: Lunes 9am</span>
+      </div>
+    </div>
+
+    <!-- CALENDAR -->
+    <div class="hub-card">
+      <div class="hub-icon">📅</div>
+      <div class="hub-title">Calendar & Agenda</div>
+      <div class="hub-stat">Cal.com</div>
+      <div class="hub-desc">Reservaciones automáticas · Link de agenda LUZYA · Integrado con n8n workflows</div>
+      <div style="margin-top:10px">
+        <span class="hub-tag green">✅ Cal.com activo</span>
+        <span class="hub-tag">Skill /cal-booking</span>
+        <span class="hub-tag">n8n webhook</span>
+      </div>
+      <div style="margin-top:8px;font-size:0.75rem;color:var(--gray)">Notifica por Telegram · Crea eventos automáticos</div>
+    </div>
+
+    <!-- TEAM -->
+    <div class="hub-card">
+      <div class="hub-icon">🤖</div>
+      <div class="hub-title">Team / Agentes</div>
+      <div class="hub-stat">87 Agentes</div>
+      <div class="hub-desc">14 agentes SYA en OpenClaw + 73 agentes Claude Code en 9 módulos</div>
+      <div style="margin-top:10px">
+        <span class="hub-tag green">sya-core (ORION)</span>
+        <span class="hub-tag">sya-research</span>
+        <span class="hub-tag">sya-marketing</span>
+        <span class="hub-tag">sya-builder</span>
+        <span class="hub-tag">sya-outreach</span>
+        <span class="hub-tag yellow">+82 más</span>
+      </div>
+      <div style="margin-top:8px;font-size:0.75rem;color:var(--gray)">Clientes activos: CASS · Cano Digital · LUZYA · Bilbao · Nissan</div>
+    </div>
+
+    <!-- OFFICE -->
+    <div class="hub-card">
+      <div class="hub-icon">🏠</div>
+      <div class="hub-title">Digital Office</div>
+      <div class="hub-stat">Workspace</div>
+      <div class="hub-desc">Archivos, bases de datos, herramientas cloud — todo accesible desde Telegram</div>
+      <div style="margin-top:10px">
+        <span class="hub-tag green">Notion: ✅</span>
+        <span class="hub-tag green">Cloudinary: ✅</span>
+        <span class="hub-tag green">GitHub: ✅</span>
+        <span class="hub-tag yellow">Baserow: fix pendiente</span>
+      </div>
+      <div style="margin-top:8px;font-size:0.75rem;color:var(--gray)">300 plantillas n8n · 26,653 leads · 73 prompts agentes · workspace local</div>
+    </div>
+
+    <!-- COST -->
+    <div class="hub-card">
+      <div class="hub-icon">💰</div>
+      <div class="hub-title">Cost Tracker</div>
+      <div class="hub-stat">~$0 / mes</div>
+      <div class="hub-desc">La mayoría de operaciones son GRATIS — Gemini API $300 créditos · OAuth Unlimited</div>
+      <div style="margin-top:10px">
+        <span class="hub-tag green">Texto: $0 (OAuth)</span>
+        <span class="hub-tag green">Imagen: $0 (Gemini)</span>
+        <span class="hub-tag green">Video: $0 (VEO 2.0)</span>
+        <span class="hub-tag yellow">KIE.ai: ~$0.20/video</span>
+        <span class="hub-tag yellow">Fal.ai: ~$0.003/img</span>
+      </div>
+      <div style="margin-top:8px;font-size:0.75rem;color:var(--gray)">Finance OCR activo · Skill /finance-ocr registra facturas automáticamente</div>
+    </div>
+
   </div>
 </section>
 
