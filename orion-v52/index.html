@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O.R.I.O.N. JARVIS v5.2 — Cano Digital / LUZYA Tech</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --purple: #6B21A8;
+    --purple-light: #9333EA;
+    --purple-glow: #A855F7;
+    --dark: #0D0D1A;
+    --dark2: #1E1E2E;
+    --dark3: #2A2A3E;
+    --white: #FFFFFF;
+    --gray: #A0A0B0;
+    --green: #22C55E;
+    --yellow: #EAB308;
+    --red: #EF4444;
+  }
+  body { background: var(--dark); color: var(--white); font-family: 'Segoe UI', system-ui, sans-serif; overflow-x: hidden; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 40px 20px;
+    background: radial-gradient(ellipse at top, #2D1B4E 0%, var(--dark) 70%);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at center, rgba(107,33,168,0.15) 0%, transparent 60%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:0.5;transform:scale(1)} 50%{opacity:1;transform:scale(1.05)} }
+  .badge {
+    background: rgba(107,33,168,0.3); border: 1px solid var(--purple-glow);
+    color: var(--purple-glow); padding: 6px 18px; border-radius: 20px;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 24px; display: inline-block;
+  }
+  .hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+  .hero h1 span { background: linear-gradient(135deg, var(--purple-glow), #EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero p { font-size: clamp(1rem, 2vw, 1.3rem); color: var(--gray); max-width: 600px; margin-bottom: 40px; line-height: 1.6; }
+  .hero-stats { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-bottom: 48px; }
+  .stat { text-align: center; }
+  .stat-num { font-size: 2.5rem; font-weight: 900; color: var(--purple-glow); }
+  .stat-label { font-size: 0.8rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+  .hero-tag { color: var(--gray); font-size: 0.9rem; }
+  .hero-tag span { color: var(--purple-glow); }
+
+  /* SECTIONS */
+  section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
+  .section-title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 12px; }
+  .section-title span { color: var(--purple-glow); }
+  .section-sub { color: var(--gray); margin-bottom: 48px; font-size: 0.95rem; }
+
+  /* POWER MATRIX */
+  .matrix-grid { display: flex; flex-direction: column; gap: 20px; }
+  .matrix-row { background: var(--dark2); border: 1px solid rgba(107,33,168,0.2); border-radius: 12px; padding: 20px 24px; }
+  .matrix-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .matrix-name { font-weight: 700; font-size: 1rem; }
+  .matrix-pct { font-size: 1.2rem; font-weight: 900; }
+  .bar-bg { background: rgba(255,255,255,0.05); border-radius: 6px; height: 10px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 6px; transition: width 1s ease; }
+  .bar-92 { background: linear-gradient(90deg, var(--purple), var(--green)); width: 92%; }
+  .bar-87 { background: linear-gradient(90deg, var(--purple), var(--purple-glow)); width: 87%; }
+  .bar-83 { background: linear-gradient(90deg, var(--purple), var(--purple-glow)); width: 83%; }
+  .bar-82 { background: linear-gradient(90deg, var(--purple), var(--purple-glow)); width: 82%; }
+  .bar-80 { background: linear-gradient(90deg, var(--purple), var(--purple-glow)); width: 80%; }
+  .bar-75 { background: linear-gradient(90deg, var(--purple), #8B5CF6); width: 75%; }
+  .bar-72 { background: linear-gradient(90deg, #7C3AED, #8B5CF6); width: 72%; }
+  .bar-63 { background: linear-gradient(90deg, var(--yellow), #F97316); width: 63%; }
+  .bar-global { background: linear-gradient(90deg, var(--purple), var(--purple-glow), #EC4899); width: 87%; }
+  .matrix-note { font-size: 0.75rem; color: var(--gray); margin-top: 4px; }
+  .matrix-global { background: linear-gradient(135deg, rgba(107,33,168,0.3), rgba(236,72,153,0.1)); border: 2px solid var(--purple-glow); }
+  .matrix-global .matrix-pct { background: linear-gradient(135deg, var(--purple-glow), #EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.5rem; }
+
+  /* AGENTS */
+  .agents-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .agent-card { background: var(--dark2); border: 1px solid rgba(107,33,168,0.2); border-radius: 12px; padding: 18px 20px; }
+  .agent-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .agent-name { font-weight: 700; font-size: 0.9rem; color: var(--purple-glow); }
+  .agent-score { font-size: 1rem; font-weight: 900; }
+  .score-high { color: var(--green); }
+  .score-mid { color: var(--yellow); }
+  .agent-desc { font-size: 0.78rem; color: var(--gray); margin-bottom: 8px; }
+
+  /* SKILLS GRID */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .skill-card {
+    background: var(--dark2); border: 1px solid rgba(107,33,168,0.2);
+    border-radius: 10px; padding: 14px 16px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--purple-glow); transform: translateY(-2px); }
+  .skill-emoji { font-size: 1.4rem; margin-bottom: 6px; }
+  .skill-name { font-size: 0.85rem; font-weight: 700; margin-bottom: 2px; }
+  .skill-desc { font-size: 0.7rem; color: var(--gray); }
+  .skill-free { font-size: 0.65rem; color: var(--green); margin-top: 4px; font-weight: 600; }
+
+  /* NEXT */
+  .next-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .next-card { background: var(--dark2); border: 1px solid rgba(107,33,168,0.15); border-radius: 12px; padding: 20px; }
+  .next-card.priority { border-color: var(--purple-glow); }
+  .next-num { font-size: 0.7rem; color: var(--gray); margin-bottom: 4px; letter-spacing: 1px; }
+  .next-title { font-weight: 700; margin-bottom: 6px; }
+  .next-impact { font-size: 0.78rem; color: var(--purple-glow); }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 60px 20px;
+    background: linear-gradient(180deg, transparent, rgba(107,33,168,0.1));
+    border-top: 1px solid rgba(107,33,168,0.2);
+  }
+  footer p { color: var(--gray); font-size: 0.9rem; margin-bottom: 8px; }
+  footer .motto { font-size: 1.1rem; font-style: italic; color: var(--purple-glow); font-weight: 600; }
+
+  /* DIVIDER */
+  .divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(107,33,168,0.4), transparent); margin: 0 auto; }
+
+  @media(max-width:600px){
+    .hero-stats{gap:24px}
+    .stat-num{font-size:2rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">v5.2 — 2026-03-03</div>
+  <h1>O.R.I.O.N. <span>JARVIS</span></h1>
+  <p>Asistente IA autónomo de Alfonso Romero — Cano Digital / LUZYA Tech.<br>Ejecuta. No describe. Nunca offline.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">49</div><div class="stat-label">Skills activos</div></div>
+    <div class="stat"><div class="stat-num">87%</div><div class="stat-label">Capacidad Jarvis</div></div>
+    <div class="stat"><div class="stat-num">14</div><div class="stat-label">Agentes SYA</div></div>
+    <div class="stat"><div class="stat-num">73</div><div class="stat-label">Agentes Claude</div></div>
+  </div>
+  <p class="hero-tag">Modelo primario: <span>GPT-5-mini OAuth</span> · Imágenes: <span>Nano Banana Pro</span> · Video: <span>VEO 2.0 GRATIS</span></p>
+</div>
+
+<div class="divider"></div>
+
+<!-- MATRIX DE PODER -->
+<section>
+  <div class="section-title">📊 Matrix de <span>Poder</span></div>
+  <div class="section-sub">Capacidades actuales vs. meta 95% Jarvis completo</div>
+  <div class="matrix-grid">
+
+    <div class="matrix-row matrix-global">
+      <div class="matrix-header">
+        <span class="matrix-name">🌐 GLOBAL ORION</span>
+        <span class="matrix-pct">87%</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill bar-global"></div></div>
+      <div class="matrix-note">Meta: 95% — faltan Evolution API + Chatwoot + UploadPost</div>
+    </div>
+
+    <div class="matrix-row">
+      <div class="matrix-header">
+        <span class="matrix-name">📄 Documentos / Formularios</span>
+        <span class="matrix-pct" style="color:#22C55E">92%</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill bar-92"></div></div>
+      <div class="matrix-note">PDF, Excel, DOCX, PPTX, AcroForm, CFDI — el más fuerte del sistema</div>
+    </div>
+
+    <div class="matrix-row">
+      <div class="matrix-header">
+        <span class="matrix-name">🎨 Creación de contenido</span>
+        <span class="matrix-pct" style="color:#A855F7">82%</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill bar-82"></div></div>
+      <div class="matrix-note">Imágenes Nano Banana Pro · Scripts · Hooks virales · Carruseles</div>
+    </div>
+
+    <div class="matrix-row">
+      <div class="matrix-header">
+        <span class="matrix-name">🎬 Video / Audio</span>
+        <span class="matrix-pct" style="color:#A855F7">80%</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill bar-80"></div></div>
+      <div class="matrix-note">VEO 2.0 confirmado GRATIS · Editor · Subtítulos Whisper · TTS Gemini</div>
+    </div>
+
+    <div class="matrix-row">
+      <div class="matrix-header">
+        <span class="matrix-name">📧 Marketing / Outreach</span>
+        <span class="matrix-pct" style="color:#A855F7">80%</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill bar-80"></div></div>
+      <div class="matrix-note">Email campaign CSV · Scraping · BANT leads · Falta Amazon SES escala</div>
+    </div>
+
+    <div class="matrix-row">
+      <div class="matrix-header">
+        <span class="matrix-name">🌐 Web / Deploy</span>
+        <span class="matrix-pct" style="color:#8B5CF6">75%</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill bar-75"></div></div>
+      <div class="matrix-note">Landing pages · GitHub Pages · Falta dominio custom y UploadPost</div>
+    </div>
+
+    <div class="matrix-row">
+      <div class="matrix-header">
+        <span class="matrix-name">⚙️ Automatización</span>
+        <span class="matrix-pct" style="color:#8B5CF6">72%</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill bar-72"></div></div>
+      <div class="matrix-note">n8n 5 workflows · 49 skills · Falta WhatsApp nativo (Evolution API)</div>
+    </div>
+
+    <div class="matrix-row">
+      <div class="matrix-header">
+        <span class="matrix-name">💼 CRM / Ventas</span>
+        <span class="matrix-pct" style="color:#EAB308">63%</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill bar-63"></div></div>
+      <div class="matrix-note">Falta Chatwoot URL + token · Baserow auth pendiente · Notion OK</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EFECTIVIDAD AGENTES -->
+<section>
+  <div class="section-title">🤖 Efectividad de <span>Agentes</span></div>
+  <div class="section-sub">14 agentes SYA activos — calificación por capacidad real probada</div>
+  <div class="agents-grid">
+
+    <div class="agent-card">
+      <div class="agent-header"><span class="agent-name">sya-core (ORION)</span><span class="agent-score score-high">90%</span></div>
+      <div class="agent-desc">Orquestación principal · Jarvis mode activo</div>
+      <div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#6B21A8,#22C55E);width:90%"></div></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><span class="agent-name">sya-quotes</span><span class="agent-score score-high">92%</span></div>
+      <div class="agent-desc">Cotizaciones · PDFs · Formularios AcroForm</div>
+      <div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#6B21A8,#22C55E);width:92%"></div></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><span class="agent-name">sya-research</span><span class="agent-score score-high">88%</span></div>
+      <div class="agent-desc">Perplexity + Gemini · Búsqueda web real</div>
+      <div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#6B21A8,#A855F7);width:88%"></div></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><span class="agent-name">sya-builder</span><span class="agent-score score-high">87%</span></div>
+      <div class="agent-desc">Claude Code escala · Sistemas completos</div>
+      <div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#6B21A8,#A855F7);width:87%"></div></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><span class="agent-name">sya-video-director</span><span class="agent-score score-high">83%</span></div>
+      <div class="agent-desc">VEO 2.0 · Editor ffmpeg · Subtítulos Whisper</div>
+      <div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#6B21A8,#A855F7);width:83%"></div></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><span class="agent-name">sya-design</span><span class="agent-score score-high">82%</span></div>
+      <div class="agent-desc">Nano Banana Pro · Brand Kit · 6 formatos</div>
+      <div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#6B21A8,#A855F7);width:82%"></div></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><span class="agent-name">sya-marketing</span><span class="agent-score score-high">80%</span></div>
+      <div class="agent-desc">Campañas · Social audit · Hooks virales</div>
+      <div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#6B21A8,#8B5CF6);width:80%"></div></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><span class="agent-name">sya-outreach</span><span class="agent-score score-high">80%</span></div>
+      <div class="agent-desc">Email campaign · 26K empresas B2B CDMX</div>
+      <div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#6B21A8,#8B5CF6);width:80%"></div></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><span class="agent-name">sya-media-ingest</span><span class="agent-score score-high">80%</span></div>
+      <div class="agent-desc">Audio · Video · Imagen · Gemini multimodal</div>
+      <div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#6B21A8,#8B5CF6);width:80%"></div></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><span class="agent-name">sya-ops</span><span class="agent-score score-high">80%</span></div>
+      <div class="agent-desc">Disk clean · Crons · Servicios · Health check</div>
+      <div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#6B21A8,#8B5CF6);width:80%"></div></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><span class="agent-name">sya-automation</span><span class="agent-score score-mid">72%</span></div>
+      <div class="agent-desc">n8n workflows · Falta Evolution WhatsApp</div>
+      <div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#7C3AED,#8B5CF6);width:72%"></div></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><span class="agent-name">sya-deliverability</span><span class="agent-score score-mid">70%</span></div>
+      <div class="agent-desc">Email verify · Falta Amazon SES para escala</div>
+      <div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#7C3AED,#8B5CF6);width:70%"></div></div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><span class="agent-name">sya-crm-followup</span><span class="agent-score score-mid">63%</span></div>
+      <div class="agent-desc">Notion OK · Falta Chatwoot + Baserow auth</div>
+      <div class="bar-bg"><div class="bar-fill" style="background:linear-gradient(90deg,#D97706,#F97316);width:63%"></div></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 49 SKILLS -->
+<section>
+  <div class="section-title">⚡ <span>49 Skills</span> Activos</div>
+  <div class="section-sub">Capacidades que ORION ejecuta de forma autónoma</div>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-emoji">🔍</div><div class="skill-name">Perplexity</div><div class="skill-desc">Búsqueda web tiempo real</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🤖</div><div class="skill-name">Claude Code</div><div class="skill-desc">Arquitectura y sistemas</div></div>
+    <div class="skill-card"><div class="skill-emoji">💰</div><div class="skill-name">Cotizador</div><div class="skill-desc">Propuestas LUZYA Pro</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🎯</div><div class="skill-name">Lead Scorer</div><div class="skill-desc">Score BANT 0-100</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🎨</div><div class="skill-name">Gemini Image</div><div class="skill-desc">Nano Banana 2/Pro</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🎬</div><div class="skill-name">VEO 2.0</div><div class="skill-desc">Videos IA sin Vertex</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🔊</div><div class="skill-name">TTS Voice</div><div class="skill-desc">Gemini voz Zephyr</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">📄</div><div class="skill-name">Create PDF</div><div class="skill-desc">PDFs con imágenes y formato</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">📊</div><div class="skill-name">Create Excel</div><div class="skill-desc">Tablas y datos formateados</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">📝</div><div class="skill-name">Create DOCX</div><div class="skill-desc">Word editables pro</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">📽️</div><div class="skill-name">Create PPTX</div><div class="skill-desc">Presentaciones PowerPoint</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🌐</div><div class="skill-name">Create Landing</div><div class="skill-desc">Landing HTML profesional</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">✂️</div><div class="skill-name">Video Editor</div><div class="skill-desc">CapCut-like ffmpeg</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">💬</div><div class="skill-name">Subtitle Gen</div><div class="skill-desc">Whisper→SRT→quemar</div></div>
+    <div class="skill-card"><div class="skill-emoji">🎥</div><div class="skill-name">Video Analyze</div><div class="skill-desc">Gemini analiza reels</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🌍</div><div class="skill-name">Web Scraper</div><div class="skill-desc">Extraer emails y leads</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">📧</div><div class="skill-name">Email Campaign</div><div class="skill-desc">Outreach B2B masivo CSV</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">📩</div><div class="skill-name">Email Send/Read</div><div class="skill-desc">Gmail SMTP + IMAP</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🔍</div><div class="skill-name">OCR Tools</div><div class="skill-desc">Gemini OCR + QR + Barcode</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">💰</div><div class="skill-name">Finance OCR</div><div class="skill-desc">Facturas/gastos CFDI</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🎨</div><div class="skill-name">Brand Kit</div><div class="skill-desc">6 formatos redes sociales</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">📋</div><div class="skill-name">PDF Form</div><div class="skill-desc">Formularios AcroForm</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">📤</div><div class="skill-name">GitHub Deploy</div><div class="skill-desc">GitHub Pages gratis</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">📊</div><div class="skill-name">Social Audit</div><div class="skill-desc">Análisis perfil + plan 30d</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🏆</div><div class="skill-name">Competitor Intel</div><div class="skill-desc">Análisis profundo competidor</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">📅</div><div class="skill-name">Cal Booking</div><div class="skill-desc">Gestionar citas Cal.com</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🧠</div><div class="skill-name">Memory Vector</div><div class="skill-desc">ChromaDB semántica</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🌐</div><div class="skill-name">Network Scan</div><div class="skill-desc">Escanear puertos y servicios</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">☁️</div><div class="skill-name">Cloudinary</div><div class="skill-desc">Storage media permanente</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">📖</div><div class="skill-name">eBook Creator</div><div class="skill-desc">Guías PDF para venta</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🗃️</div><div class="skill-name">Notion CRM</div><div class="skill-desc">Leads y clientes en Notion</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🧹</div><div class="skill-name">Disk Clean</div><div class="skill-desc">Liberar 23GB+ espacio</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🚀</div><div class="skill-name">n8n Deploy</div><div class="skill-desc">Gestionar workflows n8n</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🎵</div><div class="skill-name">Music Gen</div><div class="skill-desc">Música IA Replicate</div></div>
+    <div class="skill-card"><div class="skill-emoji">🖼️</div><div class="skill-name">Fal Image</div><div class="skill-desc">Flux Schnell backup</div></div>
+    <div class="skill-card"><div class="skill-emoji">🎭</div><div class="skill-name">Antigravity</div><div class="skill-desc">Agente contenido 9 módulos</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🎙️</div><div class="skill-name">Audio Transcribe</div><div class="skill-desc">Whisper STT</div></div>
+    <div class="skill-card"><div class="skill-emoji">📺</div><div class="skill-name">Creatomate</div><div class="skill-desc">Renderizar carruseles/videos</div></div>
+    <div class="skill-card"><div class="skill-emoji">🔑</div><div class="skill-name">Save Credential</div><div class="skill-desc">Guardar keys al .env</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🌐</div><div class="skill-name">HTTP Call</div><div class="skill-desc">Llamar cualquier API</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🔬</div><div class="skill-name">Chatwoot Agent</div><div class="skill-desc">CRM humanizado (config pendiente)</div></div>
+    <div class="skill-card"><div class="skill-emoji">🤝</div><div class="skill-name">Social Post</div><div class="skill-desc">UploadPost (activar token)</div></div>
+    <div class="skill-card"><div class="skill-emoji">🛰️</div><div class="skill-name">Tunnel</div><div class="skill-desc">Cloudflared acceso remoto</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">💻</div><div class="skill-name">Windsurf</div><div class="skill-desc">IDE en /usr/bin/windsurf</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">📋</div><div class="skill-name">QA Contenido</div><div class="skill-desc">Checklist antes de publicar</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🏥</div><div class="skill-name">Diagnóstico</div><div class="skill-desc">Health check sistema</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">⬆️</div><div class="skill-name">Escalar Claude</div><div class="skill-desc">Auto-escala a Claude Code</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🔊</div><div class="skill-name">Audio Send</div><div class="skill-desc">Enviar audios por Telegram</div><div class="skill-free">GRATIS</div></div>
+    <div class="skill-card"><div class="skill-emoji">🖥️</div><div class="skill-name">SMTP Send</div><div class="skill-desc">Email directo</div><div class="skill-free">GRATIS</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRÓXIMAS MEJORAS -->
+<section>
+  <div class="section-title">🚀 Próximas <span>Mejoras</span></div>
+  <div class="section-sub">3 pasos para llegar de 87% → 95% Jarvis</div>
+  <div class="next-grid">
+    <div class="next-card priority">
+      <div class="next-num">PRIORIDAD #1 · +8%</div>
+      <div class="next-title">⚡ Evolution API — WhatsApp nativo</div>
+      <div class="next-impact">Canal #1 en México · Mensajes masivos · Chatbots WA</div>
+    </div>
+    <div class="next-card priority">
+      <div class="next-num">PRIORIDAD #2 · +6%</div>
+      <div class="next-title">💬 Chatwoot — CRM unificado</div>
+      <div class="next-impact">Skill listo · Solo necesita URL + token de Alfonso</div>
+    </div>
+    <div class="next-card priority">
+      <div class="next-num">PRIORIDAD #3 · +5%</div>
+      <div class="next-title">📤 UploadPost — Publicar solo</div>
+      <div class="next-impact">Token ya configurado · IG + TikTok + YT + FB simultáneo</div>
+    </div>
+    <div class="next-card">
+      <div class="next-num">SIGUIENTE · +3%</div>
+      <div class="next-title">📊 Amazon SES — Email escala</div>
+      <div class="next-impact">Mejor deliverability · 50K emails/día</div>
+    </div>
+    <div class="next-card">
+      <div class="next-num">SIGUIENTE · +3%</div>
+      <div class="next-title">🧾 Invoice Generator</div>
+      <div class="next-impact">Facturas + cotizaciones con logo en segundos</div>
+    </div>
+    <div class="next-card">
+      <div class="next-num">SIGUIENTE · +2%</div>
+      <div class="next-title">💳 Stripe Checkout</div>
+      <div class="next-impact">Links de pago para clientes LUZYA</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>O.R.I.O.N. JARVIS v5.2 · Cano Digital / LUZYA Tech · CDMX 2026</p>
+  <p>GPT-5-mini OAuth · Nano Banana Pro · VEO 2.0 GRATIS</p>
+  <p class="motto">"Nunca offline. Siempre mejorando. Siempre leal."</p>
+</footer>
+
+</body>
+</html>
