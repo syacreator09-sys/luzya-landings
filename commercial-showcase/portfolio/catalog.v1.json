@@ -1,0 +1,179 @@
+{
+  "version": "1.0",
+  "status": "portfolio_demos_not_client_work",
+  "currency": "USD",
+  "pricing": "Estimates only, not published offers or guarantees; validate against brief.",
+  "cases": [
+    {
+      "id": "ugc",
+      "category": "AI UGC & Video Ads",
+      "ideal_client": "DTC brands, ecommerce, affiliate creators",
+      "problem": "Produce repeatable ad concepts with creative controls.",
+      "value": "Concept packs with documented hypotheses and revision-ready scripts.",
+      "deliverables": [
+        "Creative brief",
+        "3 opening-hook variations",
+        "Storyboard",
+        "Captions draft",
+        "Creative QA and rights checklist"
+      ],
+      "technologies": [
+        "Python",
+        "Creative Intelligence",
+        "UGC Commerce Studio",
+        "Higgsfield (only after approval)"
+      ],
+      "scope": "Demo concepts and preproduction; final paid videos only after rights and budget approval.",
+      "effort_hours": [
+        12,
+        30
+      ],
+      "estimate_usd": [
+        350,
+        1200
+      ],
+      "evidence": "UGC Commerce Studio PR #11 + Creative Intelligence PR #1; draft concepts, not filmed ads.",
+      "claim_policy": "No measured ROAS, CTR, conversion or brand results.",
+      "upwork_title": "AI UGC Ad Concepts, Scripts and Creative Testing Packs",
+      "upwork_pitch": "I design reusable ad concepts with multiple hooks, production briefs, storyboards and claims-safe QA. Current examples are fictional demonstration concepts, not paid client campaign results.",
+      "proposal": "I can begin with a claims and product-evidence review, then deliver three creative routes and a revision-ready storyboard before video production."
+    },
+    {
+      "id": "landings",
+      "category": "SaaS & Landing Page Development",
+      "ideal_client": "SaaS founders, product launches, local services",
+      "problem": "Unclear value proposition and inconsistent mobile journeys.",
+      "value": "Responsive demo landing concepts with clear messaging and accessible structure.",
+      "deliverables": [
+        "Responsive HTML/CSS landing",
+        "SEO metadata",
+        "Contact flow demo",
+        "Accessibility checklist",
+        "Desktop/mobile QA handoff"
+      ],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Static QA"
+      ],
+      "scope": "One landing demo; production integration, hosting, analytics and CRM are separately scoped.",
+      "effort_hours": [
+        14,
+        36
+      ],
+      "estimate_usd": [
+        400,
+        1600
+      ],
+      "evidence": "LUZYA Landings PR #1: SaaS, ecommerce and service examples; browser QA pending.",
+      "claim_policy": "No asserted conversions, real leads or Lighthouse scores.",
+      "upwork_title": "Conversion-Focused Landing Page Design & Front-End Development",
+      "upwork_pitch": "I build mobile-friendly landing page concepts with structured product messaging and clean frontend delivery. The linked examples are fictional design/development demonstrations without proven conversion results.",
+      "proposal": "I will map one audience, one offer and one primary action, implement a responsive page and perform staging QA before any real lead capture."
+    },
+    {
+      "id": "bi",
+      "category": "Business Intelligence Dashboards",
+      "ideal_client": "Sales teams, ecommerce operations, founders",
+      "problem": "Scattered KPIs and dashboards without traceable definitions.",
+      "value": "Explainable reporting prototypes with validated dataset-to-metric relationships.",
+      "deliverables": [
+        "Three-case dashboard prototype",
+        "Source CSV and summary JSON",
+        "Metric definitions",
+        "Data-integrity validation",
+        "Executive interpretation"
+      ],
+      "technologies": [
+        "Python",
+        "CSV",
+        "Decimal",
+        "HTML"
+      ],
+      "scope": "Synthetic report prototypes; production ETL, source credentials and access control excluded.",
+      "effort_hours": [
+        16,
+        40
+      ],
+      "estimate_usd": [
+        500,
+        1800
+      ],
+      "evidence": "LUZYA BI Studio PR #8 synthetic sales, ecommerce, operations cases.",
+      "claim_policy": "All portfolio metrics synthetic; CAC/ROAS unavailable.",
+      "upwork_title": "Business Intelligence KPI Dashboards and Executive Reporting",
+      "upwork_pitch": "I develop traceable KPI dashboards and business-ready interpretations for sales, ecommerce and operations. The showcased datasets are clearly synthetic and do not represent real client outcomes.",
+      "proposal": "I will audit your data inputs, define KPI formulas, reconcile sample records and deliver a dashboard with documented metric limitations."
+    },
+    {
+      "id": "crm",
+      "category": "CRM & Sales Systems",
+      "ideal_client": "Small sales teams, service companies and agencies",
+      "problem": "Lead handoffs and quotation stages lack a visible process.",
+      "value": "Illustrate a traceable lead-to-quote workflow without promising untested integrations.",
+      "deliverables": [
+        "Seven-step interactive walkthrough",
+        "Synthetic lead and opportunity",
+        "Quotation contract example",
+        "Validation tests",
+        "Commercial demo script"
+      ],
+      "technologies": [
+        "Sales Hub",
+        "QuoteFlow",
+        "Python",
+        "HTML",
+        "JavaScript"
+      ],
+      "scope": "Offline sales pipeline walkthrough; real CRM-QuoteFlow integration, PDF backend and tenant security require separate certification.",
+      "effort_hours": [
+        28,
+        70
+      ],
+      "estimate_usd": [
+        900,
+        3200
+      ],
+      "evidence": "Sales Hub PR #13 offline contract plus interactive walkthrough; QuoteFlow runtime unverified.",
+      "claim_policy": "No claim of live acceptance, email delivery or completed end-to-end integration.",
+      "upwork_title": "CRM Sales Pipeline and Quotation Workflow Prototypes",
+      "upwork_pitch": "I model sales workflows from lead intake to a quotation scenario, with transparent acceptance checkpoints and testable data contracts. The portfolio walkthrough is an offline synthetic simulation.",
+      "proposal": "I will map pipeline stages and permissions, validate quote calculations, then build a staging prototype and test the full workflow before production."
+    },
+    {
+      "id": "integration",
+      "category": "AI Integration & Custom Software",
+      "ideal_client": "Product teams needing secure integrations",
+      "problem": "Custom workflows require explicit contracts, permission boundaries and auditability.",
+      "value": "Integration scoping, API contracts and isolated test demos ahead of deployment.",
+      "deliverables": [
+        "Architecture brief",
+        "Contract schemas",
+        "Risk and data-access matrix",
+        "Test plan",
+        "Demo integration slice"
+      ],
+      "technologies": [
+        "Python",
+        "APIs",
+        "GitHub",
+        "Supabase or PostgreSQL (project dependent)"
+      ],
+      "scope": "Design and staging prototype only until actual system permissions and deployment are reviewed.",
+      "effort_hours": [
+        24,
+        80
+      ],
+      "estimate_usd": [
+        850,
+        4000
+      ],
+      "evidence": "GitHub source projects exist; no universal, validated end-to-end AI integration demo included in this showcase.",
+      "claim_policy": "Do not imply tested connectors, production deployment or AI accuracy guarantees.",
+      "upwork_title": "AI Integrations and Custom Workflow Prototypes",
+      "upwork_pitch": "I scope reliable integrations through explicit API contracts, sandboxed implementations and auditable tests. Work samples are technology demos unless separately identified as verified client delivery.",
+      "proposal": "I will identify source systems, authentication boundaries, error handling and acceptance criteria before implementing a limited integration proof of concept."
+    }
+  ]
+}
