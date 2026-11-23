@@ -1,0 +1,15 @@
+<!doctype html><html lang="es-MX"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LUZYA — Commercial Portfolio</title><meta name="description" content="Cinco categorías de muestras comerciales demostrativas LUZYA, con alcances y límites transparentes."><link rel="stylesheet" href="../shared.css"><style>.portfolio{max-width:1120px;margin:auto;padding:40px 24px}.portfolio .cards{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}.portfolio article{min-width:0}.meta{font-size:.85rem;color:#f0d2a1}.portfolio h2{font-size:1.45rem}.portfolio ul{padding-left:22px;color:#cbd0d7}.portfolio a{overflow-wrap:anywhere}</style></head><body><header><div class="wrap nav"><a href="../" class="brand">LUZYA / PORTFOLIO</a><span class="demo">Muestras ficticias · Sin resultados de clientes</span></div></header><main class="portfolio"><span class="demo">Commercial showcase V1</span><h1>Cinco capacidades. Evidencia sin exageraciones.</h1><p class="lead">Piezas técnicas y conceptos de demostración. Las estimaciones de esfuerzo y presupuesto no son cotizaciones y requieren un brief específico.</p><section class="cards" id="cases" aria-label="Categorías de portafolio"></section><p class="small" id="status" role="status"></p><noscript><p>El catálogo requiere JavaScript local para mostrar cinco categorías. Los datos completos están disponibles en catalog.v1.json.</p></noscript></main><footer><div class="wrap">LUZYA · Experimentos, prototipos y casos sintéticos, no trabajos entregados a clientes.</div></footer><script>
+"use strict";
+fetch("./catalog.v1.json").then(r=>{if(!r.ok)throw Error("No se pudo cargar el catálogo");return r.json()}).then(data=>{
+const root=document.getElementById("cases");
+for(const c of data.cases){const el=document.createElement("article");el.className="card";
+const h=document.createElement("h2");h.textContent=c.category;el.append(h);
+const v=document.createElement("p");v.textContent=c.value;el.append(v);
+const who=document.createElement("p");who.className="meta";who.textContent="Cliente: "+c.ideal_client;el.append(who);
+const scope=document.createElement("p");scope.textContent=c.scope;el.append(scope);
+const ul=document.createElement("ul");c.deliverables.forEach(d=>{const li=document.createElement("li");li.textContent=d;ul.append(li)});el.append(ul);
+const price=document.createElement("p");price.className="meta";price.textContent="Estimación: "+c.effort_hours.join("–")+" h · USD "+c.estimate_usd.join("–");el.append(price);
+const ev=document.createElement("p");ev.className="small";ev.textContent="Evidencia / límite: "+c.evidence+" "+c.claim_policy;el.append(ev);root.append(el)}
+document.getElementById("status").textContent=data.cases.length+" categorías documentadas; sin métricas comerciales verificadas.";
+}).catch(e=>{document.getElementById("status").textContent=e.message+"; consultar catalog.v1.json.";});
+</script></body></html>
