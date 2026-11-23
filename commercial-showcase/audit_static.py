@@ -5,7 +5,7 @@ from pathlib import Path
 import sys
 
 ROOT=Path(__file__).resolve().parent
-PAGES=[ROOT/"index.html",*[ROOT/x/"index.html" for x in ("saas","ecommerce","servicios")]]
+PAGES=[ROOT/"index.html",*[ROOT/x/"index.html" for x in ("saas","ecommerce","servicios","portfolio")]]
 
 class Audit(HTMLParser):
     def __init__(self):
